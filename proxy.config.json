@@ -1,0 +1,8 @@
+{
+  "/services/*": {
+    "target": "https://www.prevision-meteo.ch/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}

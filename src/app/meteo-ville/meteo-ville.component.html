@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="search">
+    <form class="form-inline md-form form-sm form-search" [formGroup]="searchForm" (ngSubmit)="search()">
+      <mdb-icon fas icon="search" aria-hidden="true"></mdb-icon>
+      <input class="form-control form-control-sm ml-3 w-75" type="text" formControlName="ville" placeholder="Rechercher une ville" aria-label="Search"
+        mdbInput>
+      <button type="submit" mdbBtn color="primary" mdbWavesEffect>Rechercher</button>
+    </form>
+    <div *ngIf="errors.length > 0" #alert class="alert alert-danger alert-dismissible fade show" role="alert">
+      <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <strong>Erreur:</strong>
+      <ul>
+        <li>Veuillez renseigner une ville dans les pays suivants: France, Suisse, Belgique.</li>
+        <li>Ne faite pas de faute dans le nom de la ville.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row titre">
+    <h1>Meteo pour {{meteo.city_info.name}}</h1>
+  </div>
+  <div class="row now-meteo">
+    <h5>{{meteo.current_condition.date}} - {{meteo.current_condition.hour}}</h5>
+    <div class="img-meteo">
+      <img src="{{meteo.current_condition.icon_big}}" class="img-fluid img-meteo-current" alt="Responsive image">
+    </div>
+    <p>{{meteo.current_condition.condition}} - {{meteo.current_condition.tmp}} ° C </p>
+  </div>
+  <div class="row">
+    <h3>Les 5 jours suivants</h3>
+  </div>
+  <div class="row">
+    <div class="col-2_4" *ngFor="let jour of semaine">
+      <mdb-card>
+        <mdb-card-img src="{{jour.icon}}" alt="Card image cap"></mdb-card-img>
+        <mdb-card-body>
+          <mdb-card-title><h5>{{jour.day_long}} {{jour.date}}</h5></mdb-card-title>
+          <mdb-card-text>
+            <p>{{jour.condition}}</p>
+            <p>Min: {{jour.tmin}}°C - Max: {{jour.tmax}}°C</p>
+          </mdb-card-text>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+  </div>
+</div>
